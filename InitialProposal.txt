@@ -2,7 +2,9 @@ Initial Proposal
 
 Yanhan Si
 
-Question: How does the total energy intensity for all major fuels differ in different square footage category and are there siginificant differences in term of annual total electricity consumption for different region and principal building activity(PBA) types?
+Question: How does the total energy intensity for all major fuels differ in different square footage category and
+
+are there siginificant differences in term of annual total electricity consumption for different region and principal building activity(PBA) types?
 
 
 Dataset: 2012 US Commercial Building Energy Consumption
