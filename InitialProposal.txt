@@ -1,0 +1,28 @@
+Initial Proposal
+
+Yanhan Si
+
+Question: Are there significant differences in the main types of energy source for manufacturing in different commercial buildings?
+
+Dataset: 2012 US Commercial Building Energy Consumption
+
+Analysis: 
+
+          Features: PBA -- Principal building activity
+		ELMANU -- Electricity used for manufacturing
+		NGMANU -- Natural gas used for manufacturing
+		FKMANU -- Fuel oil used for manufacturing
+		PRMANU -- Propane used for manufacturing
+		STMANU -- District steam used for manufacturing
+		HWMANU -- District hot water used for manufacturing
+		WOMANU -- Wood used for manufacturing
+		COMANU -- Coal used for manufacturing
+		SOMANU -- Solar used for manufacturing
+		OTMANU -- Other source used for manufacturing
+		FINALWT -- Final full sample building weight
+		FINALWT1-FINALWT197 -- Final replicate weight 1-197
+
+	 Function: SURVEYFREQ: calculate the frequency of each energy source for manufacturing by different principal building activity
+		   Hypothesis test
+
+Statistical software: SAS, R
