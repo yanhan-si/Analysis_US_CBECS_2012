@@ -4,7 +4,7 @@ Yanhan Si
 
 Question: How does the total energy intensity for all major fuels differ in different square footage categories and
 
-are there siginificant differences in term of annual total electricity consumption for different region and principal
+are there siginificant differences in term of annual total electricity consumption for different regions and principal
 
 building activity(PBA) types?
 
