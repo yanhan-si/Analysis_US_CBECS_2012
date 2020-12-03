@@ -2,9 +2,11 @@ Initial Proposal
 
 Yanhan Si
 
-Question: How does the total energy intensity for all major fuels differ in different square footage category and
+Question: How does the total energy intensity for all major fuels differ in different square footage categories and
 
-are there siginificant differences in term of annual total electricity consumption for different region and principal building activity(PBA) types?
+are there siginificant differences in term of annual total electricity consumption for different region and principal
+
+building activity(PBA) types?
 
 
 Dataset: 2012 US Commercial Building Energy Consumption
@@ -18,11 +20,12 @@ Analysis:
 		ELMANU - Electricity used for manufacturing
 		ELCNS - Annual electricity consumption (kWh)
 		MFBTU - Annual major fuel consumption (thous Btu)
+		SQFT - Square footage
 		FINALWT - Final full sample building weight
 		FINALWT1-FINALWT197 - Final replicate weight 1-197
 		
-	 Function: SURVEYFREQ
-	 	   SURVEYMEAN
-		   surveylogistic
+	 Function: SURVEYFREQ:
+	 	   SURVEYMEAN: Calculate the total electricity consumption
+		   Regression Analysis of the total electricity comsunption on region and PBA.
 
 Statistical software: SAS, R
