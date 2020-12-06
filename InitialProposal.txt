@@ -22,8 +22,8 @@ Analysis:
 		FINALWT - Final full sample building weight
 		FINALWT1-FINALWT197 - Final replicate weight 1-197
 		
-	 Function: SURVEYFREQ:
-	 	   SURVEYMEAN: Calculate the total electricity consumption
-		   Regression Analysis of the total electricity comsunption on region and PBA.
+	 Function: 
+	 	   SURVEYMEAN: Calculate the total annual major fuel consumption (thous Btu)
+		   Regression Analysis of the total electricity consumption on region and PBA.
 
 Statistical software: SAS, R
