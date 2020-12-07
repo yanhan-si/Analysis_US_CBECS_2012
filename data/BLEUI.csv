@@ -1,0 +1,98 @@
+The SURVEYMEANS Procedure
+"Data Summary",
+"Number of Observations",6720
+"Sum of Weights",5557138.45
+
+"Variance Estimation",
+"Method","Jackknife"
+"Replicate Weights","CBECS"
+"Number of Replicates",197
+
+"Statistics",,
+"Variable","Sum","Std Errorof Sum"
+"BLEUI",455955217,19847456
+
+The SURVEYMEANS Procedure
+"Statistics for PBA*REGION Domains",,,,
+"PBA","REGION","Variable","Sum","Std Errorof Sum"
+"Vacant","Northeast","BLEUI",284060,99366
+,"Midwest","BLEUI",631378,205524
+,"South","BLEUI",913924,284656
+,"West","BLEUI",633403,188645
+"Office","Northeast","BLEUI",10553852,1344744
+,"Midwest","BLEUI",16122935,1695382
+,"South","BLEUI",23463443,2632452
+,"West","BLEUI",15589117,2410278
+"Laboratory","Northeast","BLEUI",887980,328522
+,"Midwest","BLEUI",274063,207375
+,"South","BLEUI",1009067,597362
+,"West","BLEUI",1141517,545607
+"Nonrefrigerated warehouse","Northeast","BLEUI",2055016,306612
+,"Midwest","BLEUI",3415952,589116
+,"South","BLEUI",8843676,1836567
+,"West","BLEUI",5021601,1790231
+"Food sales","Northeast","BLEUI",6704653,2182055
+,"Midwest","BLEUI",8142948,2320207
+,"South","BLEUI",19022682,3450339
+,"West","BLEUI",9033756,2288911
+"Public order and safety","Northeast","BLEUI",1082664,416242
+,"Midwest","BLEUI",1233419,514087
+,"South","BLEUI",2922622,744430
+,"West","BLEUI",744661,397638
+"Outpatient health care","Northeast","BLEUI",1583235,388660
+,"Midwest","BLEUI",3146947,915812
+,"South","BLEUI",3077134,733018
+,"West","BLEUI",2663272,613063
+"Refrigerated warehouse","Northeast","BLEUI",14768,13687
+,"Midwest","BLEUI",69440,32902
+,"South","BLEUI",926235,514524
+,"West","BLEUI",77874,73092
+"Religious worship","Northeast","BLEUI",1984187,311685
+,"Midwest","BLEUI",4139732,761918
+,"South","BLEUI",6812915,1319251
+,"West","BLEUI",4215884,2074899
+"Public assembly","Northeast","BLEUI",4110032,956598
+,"Midwest","BLEUI",6297374,1211679
+,"South","BLEUI",6950437,1076128
+,"West","BLEUI",4805223,942866
+"Education","Northeast","BLEUI",3444727,617394
+,"Midwest","BLEUI",5197430,596055
+,"South","BLEUI",10137429,1342183
+,"West","BLEUI",6413748,1201469
+"Food service","Northeast","BLEUI",16708127,2869951
+,"Midwest","BLEUI",22513288,3591074
+,"South","BLEUI",52951410,7828622
+,"West","BLEUI",24312805,2930376
+"Inpatient health care","Northeast","BLEUI",357358,82792
+,"Midwest","BLEUI",423927,175471
+,"South","BLEUI",868414,222920
+,"West","BLEUI",399932,160201
+"Nursing","Northeast","BLEUI",575279,162745
+,"Midwest","BLEUI",907735,302438
+,"South","BLEUI",1201955,359575
+,"West","BLEUI",1064475,598809
+"Lodging","Northeast","BLEUI",1699975,458164
+,"Midwest","BLEUI",1197445,295769
+,"South","BLEUI",4199388,730843
+,"West","BLEUI",2855563,581583
+"Strip shopping mall","Northeast","BLEUI",2739057,807167
+,"Midwest","BLEUI",4421516,1334524
+,"South","BLEUI",10236781,2167818
+,"West","BLEUI",5479775,1569349
+"Enclosed mall","Northeast","BLEUI",7630.546158,1734.112600
+,"Midwest","BLEUI",21500,8885.853832
+,"South","BLEUI",34769,15358
+,"West","BLEUI",17532,6875.142063
+"Retail other than mall","Northeast","BLEUI",5403944,1105790
+,"Midwest","BLEUI",7134946,1053115
+,"South","BLEUI",10360859,1206725
+,"West","BLEUI",5384653,1191865
+"Service","Northeast","BLEUI",12376589,3343072
+,"Midwest","BLEUI",11766916,1116727
+,"South","BLEUI",16238568,2193229
+,"West","BLEUI",5741404,1583698
+"Other","Northeast","BLEUI",4394996,3003122
+,"Midwest","BLEUI",2210106,1123955
+,"South","BLEUI",1961809,591749
+,"West","BLEUI",1988378,842859
+

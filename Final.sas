@@ -26,9 +26,24 @@ run;
 
 
 /*Calculate*/
+ods csvall file="&path/BLEUI.csv";
 proc surveymeans data=cbecs.cbecs varmethod=jackknife sum;
 	repweights finalwt1-finalwt197 / jkcoefs=1;
 	weight finalwt;
 	var BLEUI;
 	domain pba * region;
 run;
+ods csvall close;
+
+/*Calculate*/
+ods csvall file="&path/BLEUI_pba.csv";
+proc surveymeans data=cbecs.cbecs varmethod=jackknife sum;
+	repweights finalwt1-finalwt197 / jkcoefs=1;
+	weight finalwt;
+	var BLEUI;
+	domain pba;
+run;
+ods csvall close;
+
+
+

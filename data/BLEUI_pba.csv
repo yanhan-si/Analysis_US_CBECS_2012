@@ -1,0 +1,38 @@
+The SURVEYMEANS Procedure
+"Data Summary",
+"Number of Observations",6720
+"Sum of Weights",5557138.45
+
+"Variance Estimation",
+"Method","Jackknife"
+"Replicate Weights","CBECS"
+"Number of Replicates",197
+
+"Statistics",,
+"Variable","Sum","Std Errorof Sum"
+"BLEUI",455955217,19847456
+
+The SURVEYMEANS Procedure
+"Statistics for PBA Domains",,,
+"PBA","Variable","Sum","Std Errorof Sum"
+"Vacant","BLEUI",2462764,410893
+"Office","BLEUI",65729347,4174047
+"Laboratory","BLEUI",3312628,899143
+"Nonrefrigerated warehouse","BLEUI",19336245,2698628
+"Food sales","BLEUI",42904039,5216439
+"Public order and safety","BLEUI",5983367,1063871
+"Outpatient health care","BLEUI",10470589,1368224
+"Refrigerated warehouse","BLEUI",1088316,521061
+"Religious worship","BLEUI",17152717,2592309
+"Public assembly","BLEUI",22163066,2100782
+"Education","BLEUI",25193334,1956313
+"Food service","BLEUI",116485630,9602657
+"Inpatient health care","BLEUI",2049630,333159
+"Nursing","BLEUI",3749444,776818
+"Lodging","BLEUI",9952371,1082492
+"Strip shopping mall","BLEUI",22877128,3060351
+"Enclosed mall","BLEUI",81432,19110
+"Retail other than mall","BLEUI",28284403,2256662
+"Service","BLEUI",46123477,4443650
+"Other","BLEUI",10555289,3345229
+
