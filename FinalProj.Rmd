@@ -3,62 +3,70 @@ title: "STATS506 Final Project"
 subtitle: "Analysis of 2012 US Commercial Building Energy Consumption Survey"
 author: "Yanhan Si"
 date: "12/6/2020"
-output: html_document
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
 ```
 
 # Introduction
 
 The Commercial Building Energy Consumption Survey (CBECS) is a nationwide sample survey designed to collect information on the stock of commercial buildings in the United States, including energy-related building characteristics and energy use data.  It gives a snapshot of the commercial buildings stock and energy use for the reference year in the United States. 
 
-In this project, I conducted a preliminary analysis on the 2012 CBECS data, trying to understand the total energy intensity for all major fuels among different principal activity buildings and examine the fuel usage difference in different regions. 
+Energy is closely related to the economic development of a country or region. Understanding the energy use and consumption of a country or region can better optimize the industrial structure. 
+
+In this project, I conducted a preliminary analysis on the 2012 CBECS data, trying to understand the total energy intensity for all major fuels among different principal buildings activity and examine the fuel usage difference in different regions. 
 
 # Data and Method
 
-2012 CBECS provides the annual major fuel consumption (thou Btu) in the surveyed commercial building. To calculate the building-level energy intensities, I created a new variable `BLEUI` equal to the annual major fuel consumption divided by the building square footage. The sample overall average energy intensity is 455955217. The mean major fuel consumption intensity was calculated through the final full sample building weight while the standard deviation was computed using the 197 final replicate weight. The calculation was performed using SAS surveymeans function.
+2012 CBECS provides the annual major fuel consumption (thou Btu) (`MFBTU`), the square footage (`SQFT`), the principal building activity type (`PBA`) and region (`REGION`) of the surveyed commercial building. To calculate the building-level energy intensities, I created a new variable `BLEUI` equal to the annual major fuel consumption divided by the building square footage. 
+
+To produce population estimates from this survey data, CBECS provides the final sampling weight `FINALWT` which is the number of buildings in the population represented by the observation.  The variable `FINALWT` accounts for different probabilities of selection and rates of participation in the survey. It is the reciprocal of the probability of being selected for the CBECS sample. Standard errors are estimated through jackknife method. This method uses replicate weights to repeatedly estimate the statistic of interest and calculate the differences between these estimates and the full-sample estimate. The variance is estimated by $\hat{Var(\hat\theta)} = \sum_{r=1}^R c_r (\hat \theta_r - \hat \theta)^2$. $\hat \theta$ is the estimate from the full sample for $\theta$. $\hat \theta_r$ is the estimate from the r-th replicate subsample by using replicate weights and $c_r$ is the jackknife coefficient for replicate r. For the 2012 CBECS, R=197 ( `FINALWT1-FINALWT197` ) and $c_r$ = 1 for each replicate. The calculations were performed using SAS surveymeans function. 
+
+[Code](https://github.com/yanhan-si/Analysis_US_CBECS_2012) can be found here.
 
 ```{r include=FALSE}
 library(tidyverse)
 library(zoo)
 BLEUI <- read_csv("data/BLEUI.csv", skip = 16)
 BLEUI_pba <- read_csv("data/BLEUI_pba.csv", skip = 16)
-PBA=na.locf(BLEUI$PBA);
+PBA = na.locf(BLEUI$PBA);
 BLEUI$PBA = PBA
 BLEUI_pba = BLEUI_pba %>% 
   select(-Variable) %>% 
-  rename(`Energy intensity` = Sum, Std = `Std Errorof Sum`)
+  rename(intensity = Sum, Std = `Std Errorof Sum`) %>%
+  mutate(lower = intensity - 1.96 * Std,
+         upper = intensity + 1.96 * Std) %>%
+  mutate(`CI` = sprintf(' (%.2e, %.2e)', lower, upper)) %>%
+  mutate(`Fuel Energy intensity` = sprintf('%.2e',intensity)) %>%
+  select(`Principal Building Activity` = PBA, `Fuel Energy intensity`, `Confidence Interval (95%)`=`CI`)
 ```
+
 # Result
 
-Figure 1 shows the average energy intensity by different building type. We can see that the average energy intensity of the food service industry is the highest, followed by office. 
+The overall average fuel energy intensity is 455,955,217 btu per square footage. 
+Table 1 shows the average fuel energy intensity by different building activity types. We can see that the average fuel energy intensity of the food service industry is the highest, followed by office. Enclosed mail and refrigerated warehouse have very low fuel energy consumption intensity. This is intuitive as we would expect the major direct energy source of these industries to be electricity.
 
 ```{r echo=FALSE}
-BLEUI_pba %>%
-  ggplot(aes(x = PBA, y = `Energy intensity`)) + 
-  geom_point( position = position_dodge(width = .5), alpha = 0.5, col = "red" ) +
-  geom_errorbar( 
-    aes(ymin = `Energy intensity` - Std, ymax =`Energy intensity` + Std), 
-    alpha = 0.5, 
-    position = position_dodge(width = .5),
-    col = "red"
-  ) +
-  coord_flip() +
-  theme_bw() +
-  xlab('') +
-  ggtitle('Figure 1 Energy intensity by building activity type')
+BLEUI_pba %>% knitr::kable(caption = "Fuel Energy Intensity") %>%
+  kableExtra::kable_styling('striped', full_width = TRUE) 
 ```
 
-Figure 2 shows the energy intensity by different regions and building activity types. As we can see, for food sales, food service and office type of commercial buildings, the energy intensity shows a significant difference among different regions. On average, commercial buildings in the south region have larger major fuel consumption per square footage.
 
 ```{r echo=FALSE}
-BLEUI %>% ggplot(aes(y = Sum, x = REGION, color = REGION)) + 
+BLEUI$PBA = ifelse(BLEUI$PBA == "Nonrefrigerated warehouse","Nonrefrigerated" ,BLEUI$PBA)
+BLEUI$PBA = ifelse(BLEUI$PBA == "Refrigerated warehouse","Refrigerated" ,BLEUI$PBA)
+BLEUI$PBA = ifelse(BLEUI$PBA == "Public order and safety","Public safety" ,BLEUI$PBA)
+BLEUI$PBA = ifelse(BLEUI$PBA =="Outpatient health care","Outpatient" ,BLEUI$PBA)
+BLEUI$PBA = ifelse(BLEUI$PBA == "Inpatient health care","Inpatient" ,BLEUI$PBA)
+BLEUI$PBA = ifelse(BLEUI$PBA == "Retail other than mall","Retail" ,BLEUI$PBA)
+BLEUI$PBA = ifelse(BLEUI$PBA == "Strip shopping mall","Shopping mall" ,BLEUI$PBA)
+BLEUI %>%
+  ggplot(aes(x = Sum, y = REGION, color = REGION)) + 
   geom_point( position = position_dodge(width = .5), alpha = 0.5 ) +
   geom_errorbar( 
-    aes(ymin = Sum - `Std Errorof Sum`, ymax = Sum + `Std Errorof Sum`), 
+    aes(xmin = Sum - 1.96*`Std Errorof Sum`, xmax = Sum + 1.96*`Std Errorof Sum`), 
     alpha = 0.5, 
     position = position_dodge(width = .5)
   ) +
@@ -66,11 +74,19 @@ BLEUI %>% ggplot(aes(y = Sum, x = REGION, color = REGION)) +
   facet_wrap(~ PBA) + 
   theme_bw() +
   scale_color_manual( values = c( 'darkblue', 'darkgreen','darkorange','darkred') ) + 
-  ylab('Energy intensity') +
-  ggtitle('Figure 2 Energy intensity by region and building activity type')
+  xlab('') +
+  ylab('') +
+  ggtitle('Figure 1 Fuel Energy Intensity by Region & Type') + 
+  theme(axis.text.x = element_text(angle = 90))
 ```
+
+Figure 1 shows the fuel energy intensity by different regions and building activity types. As we can see, for food sales, food service, and office type of commercial buildings, the fuel energy intensity shows a significant difference among different regions. Commercial buildings in the south region have larger major fuel consumption per square footage than other regions. For laboratory, nursing, health care, and mail service, there is no significant fuel energy intensity consumption difference.
 
 # Conclusion
 
-In this project, I conducted a descriptive analysis on the 2012 CBECS data. The result shows that activity commercial building of the same type has different major fuel consumption intensities in different regions. Commercial buildings in the south region tend to have larger mean energy intensity.
+In this project, I conducted a descriptive analysis of the 2012 CBECS data. The result shows that activity commercial building of the same type has different major fuel consumption intensities in different regions. Commercial buildings in the south region tend to have larger fuel energy consumption intensity than other regions.
+
+Energy in the United States mostly comes from fossil fuels, including petroleum, natural gas, and coal. Texas is the nation's largest oil- and natural gas- producing state. We noticed from this analysis that the food industry and food sales in the south region highly rely on the fuel energy source. For industry categories that have differences in the fuel energy intensity among different regions, the south region typically leads. We also noticed that the fuel energy intensity of the food industry is much higher than other commercial types. This indicates that gas is widely used in these industries.
+
+
 

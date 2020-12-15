@@ -24,8 +24,7 @@ data cbecs.cbecs;
  	BLEUI=mfbtu/sqft;
 run;
 
-
-/*Calculate*/
+/*Calculate fuel energy intensity by pba and resion*/
 ods csvall file="&path/BLEUI.csv";
 proc surveymeans data=cbecs.cbecs varmethod=jackknife sum;
 	repweights finalwt1-finalwt197 / jkcoefs=1;
@@ -35,7 +34,7 @@ proc surveymeans data=cbecs.cbecs varmethod=jackknife sum;
 run;
 ods csvall close;
 
-/*Calculate*/
+/*Calculate fuel energy intensity by pba*/
 ods csvall file="&path/BLEUI_pba.csv";
 proc surveymeans data=cbecs.cbecs varmethod=jackknife sum;
 	repweights finalwt1-finalwt197 / jkcoefs=1;
@@ -44,6 +43,3 @@ proc surveymeans data=cbecs.cbecs varmethod=jackknife sum;
 	domain pba;
 run;
 ods csvall close;
-
-
-
